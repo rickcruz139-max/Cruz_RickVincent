@@ -11,7 +11,7 @@ class UsersController extends Controller {
     {
         $this->call->model('UsersModel');
         $data['users'] = $this->UsersModel->all();
-        $this->call->view('users/index', $data);
+        $this->call->view('/', $data);
     }
 
     public function create()
@@ -25,7 +25,7 @@ class UsersController extends Controller {
             'email' => $email
         );
         if($this->UsersModel->insert($data)){
-            header('Location: /users/index');
+            header('Location: /');
             exit;
         }else {
             echo "Error inserting record.";
@@ -50,7 +50,7 @@ class UsersController extends Controller {
                 'email' => $email
             );
             if($this->UsersModel->update($id, $data)){
-                header('Location: /users/index');
+                header('Location: /');
 exit;
             }else{
                 echo "Error updating record.";
@@ -62,7 +62,7 @@ exit;
     }
     function delete($id){
         if($this->UsersModel->delete($id)){
-            header('Location: /users/index');
+            header('Location: /');
 exit;
         }else{
             echo "Error deleting record.";
