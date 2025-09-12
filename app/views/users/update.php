@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .form-container {
-            max-width: 400px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .input-field:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            transition: all 0.2s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
-    <div class="form-container bg-white p-8 rounded-xl shadow-2xl w-full mx-4">
-        <div class="text-center mb-6">
-            <p class="text-gray-600">Update Page</p>
+<body class="bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center min-h-screen p-6">
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border border-gray-300">
+    <!-- Title -->
+    <h1 class="text-3xl font-bold text-center text-indigo-700 mb-8 uppercase tracking-wide">Update Record</h1>
+
+    <!-- Form -->
+    <form action="<?= site_url('users/update/' . segment(4)); ?>" method="POST" class="space-y-6">
+      
+      <!-- Username -->
+      <div>
+        <label for="username" class="block text-sm font-semibold text-gray-700 mb-1">Username</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+            <!-- Icon: User -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.969 9.969 0 0112 15c2.21 0 4.243.72 5.879 1.929M15 10a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </span>
+          <input type="text" id="username" name="username" 
+            value="<?= html_escape($user['username']); ?>" 
+            required
+            class="pl-10 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
         </div>
-        
-        <form action="<?=site_url('users/update/'.segment(4));?>" method="post"  class="space-y-4">
-            <div>
-                <label for="firstname" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                <input type="text" id="firstname" name="firstname" value="<?= html_escape($users['firstname']); ?>"
-                       class="input-field w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500" 
-                       placeholder="Enter your full name" required>
-            </div>
+      </div>
 
-             <div>
-                <label for="lastname" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                <input type="text" id="lastname" name="lastname" value="<?= html_escape($users['lastname']); ?>"
-                       class="input-field w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500" 
-                       placeholder="Enter your full name" required>
-            </div>
-            
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                <input type="email" id="email" name="email" value ="<?= html_escape($users['email']); ?>"
-                       class="input-field w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500" 
-                       placeholder="Enter your email" required>
-            </div>
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+            <!-- Icon: Mail -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H8m0 0l-4-4m4 4l-4 4m16-4h-8" />
+            </svg>
+          </span>
+          <input type="email" id="email" name="email" 
+            value="<?= html_escape($user['email']); ?>" 
+            required
+            class="pl-10 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+        </div>
+      </div>
 
-            <button type="submit" 
-                    class="btn-submit w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                Update
-            </button>
-        </form>
+      <!-- Submit Button -->
+      <button type="submit"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-md shadow transition duration-300">
+        Update
+      </button>
+    </form>
+  </div>
+
 </body>
 </html>
-</content>
-</create_file>

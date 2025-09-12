@@ -1,39 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Index</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 min-h-screen flex flex-col items-center py-10">
-    <h1 class="text-3xl font-bold mb-8 text-gray-800">Welcome to Index View</h1>
-    <div class="overflow-x-auto w-full max-w-5xl px-4">
-        <table class="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
-            <thead class="bg-gray-800 text-white">
-                <tr>
-                    <th class="py-3 px-6 text-left uppercase font-semibold text-sm border-b border-gray-700">id</th>
-                    <th class="py-3 px-6 text-left uppercase font-semibold text-sm border-b border-gray-700">firstname</th>
-                    <th class="py-3 px-6 text-left uppercase font-semibold text-sm border-b border-gray-700">lastname</th>
-                    <th class="py-3 px-6 text-left uppercase font-semibold text-sm border-b border-gray-700">email</th>
-                    <th class="py-3 px-6 text-left uppercase font-semibold text-sm border-b border-gray-700">Action</th>
+<body class="bg-gradient-to-br from-gray-100 to-gray-300 min-h-screen flex items-center justify-center p-6">
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach(html_escape($users) as $user): ?>
-                <tr class="hover:bg-gray-100 border-b border-gray-200">
-                    <td class="py-3 px-6 text-gray-700"><?=($user['id']); ?></td>
-                    <td class="py-3 px-6 text-gray-700"><?=($user['firstname']); ?></td>
-                    <td class="py-3 px-6 text-gray-700"><?=($user['lastname']); ?></td>
-                    <td class="py-3 px-6 text-gray-700"><?=($user['email']); ?></td>
-                    <td class="py-3 px-6 text-gray-700"><a href="<?=site_url('users/update/'.$user['id']);?>">Update</a> | <a href="<?=site_url('users/delete/'.$user['id']);?>">Delete</a> </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-            <a href="<?= site_url('users/create'); ?>" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-300">Create New User</a>
+  <div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-6xl border border-gray-300">
+    
+    <!-- Header -->
+    <h1 class="text-4xl font-bold text-center mb-10 text-indigo-700 tracking-wide uppercase">User Records</h1>
+
+    <!-- Table -->
+    <div class="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+      <table class="min-w-full divide-y divide-gray-200 text-sm text-gray-700">
+        <thead class="bg-indigo-600 text-white text-sm uppercase tracking-wider">
+          <tr>
+            <th class="px-6 py-4 text-left">ID</th>
+            <th class="px-6 py-4 text-left">Username</th>
+            <th class="px-6 py-4 text-left">Email</th>
+            <th class="px-6 py-4 text-center">Action</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <?php foreach (html_escape($users) as $user): ?> 
+            <tr class="hover:bg-gray-100 transition duration-200">
+              <td class="px-6 py-4 font-medium"><?= $user['id']; ?></td>
+              <td class="px-6 py-4"><?= $user['username']; ?></td>
+              <td class="px-6 py-4"><?= $user['email']; ?></td>
+              <td class="px-6 py-4 text-center">
+                <a href="<?= site_url('users/update/'.$user['id']); ?>" 
+                   class="text-indigo-600 font-semibold hover:text-indigo-800 transition">Update</a>
+                |
+                <a href="<?= site_url('users/delete/'.$user['id']); ?>" 
+                   class="text-red-500 font-semibold hover:text-red-700 transition">Delete</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
     </div>
+
+    <!-- Create Button -->
+    <div class="mt-8 text-center">
+      <a href="<?= site_url('users/create');?>" 
+         class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md shadow-md font-semibold transition duration-300">
+        + Create New Record
+      </a>
+    </div>
+    
+  </div>
 </body>
 </html>

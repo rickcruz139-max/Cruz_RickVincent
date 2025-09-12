@@ -1,79 +1,75 @@
-<?php
+ <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
-/**
- * Controller: UserController
- * 
- * Automatically generated via CLI.
- */
 class UsersController extends Controller {
+    private $usersModel;
+
     public function __construct()
     {
         parent::__construct();
+        $this->call->model('Usersmodel');
+        $this->usersModel = $this->Usersmodel;
     }
 
-    public function index()
+    public function index(): void
     {
-        $data = $this->UsersModel->all();
-        $this->call->view('users/index', ['users' => $data]);
+        $data['users'] = $this->usersModel->all();
+        $this->call->view('users/index', $data);
     }
 
     public function create()
     {
-        if ($this->io->method() == 'post')
-        {
-            $firstname = $this->io->post('firstname');
-            $lastname = $this->io->post('lastname');
+        if ($this->io->method() == 'post') {
+            $username = $this->io->post('username');
             $email = $this->io->post('email');
-
             $data = array(
-                'firstname' => $firstname,
-                'lastname' => $lastname,
+                'username' => $username,
                 'email' => $email
             );
-            if($this->UsersModel->insert($data)){
-                redirect();
-            }else{
-                echo "Error in inserting data.";
+
+            if ($this->usersModel->insert($data)) {
+                redirect(); // optionally add route: redirect('users/index');
+            } else {
+                echo "Error inserting record.";
             }
-        }else{
-        $this ->call->view('users/create');
+        } else {
+            $this->call->view('users/create');
         }
     }
+
     public function update($id)
     {
-        $users = $this->UsersModel->find($id);
-        if(!$users){
-            die("User not found") ;
+        $user = $this->usersModel->find($id);
+        if (!$user) {
+            echo "User not found.";
+            return;
         }
 
-        if($this->io->method() == 'post')
-        {
-            $firstname = $this->io->post('firstname');
-            $lastname = $this->io->post('lastname');
-            $email = $this->io->post('email');
-
+        if ($this->io->method() == "post") {
+            $username = $this->io->post("username");
+            $email = $this->io->post("email");
             $data = array(
-                'firstname' => $firstname,
-                'lastname' => $lastname,
+                'username' => $username,
                 'email' => $email
             );
-            if($this->UsersModel->update($id, $data)){
+
+            if ($this->usersModel->update($id, $data)) {
                 redirect();
-            }else{
-                echo "Error in updating data.";
+            } else {
+                echo "Error updating record.";
             }
-        }else{
-        $data['users'] = $users; 
-        $this ->call->view('users/update', $data);
-        }
+        } else {
+    $data['user'] = $user; // <-- change 'users' to 'user'
+    $this->call->view('users/update', $data);
+}
     }
+
     public function delete($id)
     {
-        if($this->UsersModel->delete($id)){
+        if ($this->usersModel->delete($id)) {
             redirect();
-        }else{
-            echo "Error in deleting data.";
+        } else {
+            echo "Error deleting record.";
         }
-    } 
+    }
 }
