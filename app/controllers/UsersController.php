@@ -14,7 +14,7 @@ class UsersController extends Controller {
     public function index(): void
     {
         $data['users'] = $this->usersModel->all();
-        $this->call->view('users/index', $data);
+        $this->call->view('', $data);
     }
 
     public function create()
@@ -28,7 +28,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->insert($data)) {
-                redirect('users/index'); // optionally add route: redirect('users/index');
+                redirect(''); // optionally add route: redirect('users/index');
             } else {
                 echo "Error inserting record.";
             }
@@ -54,7 +54,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->update($id, $data)) {
-                redirect('users/index');
+                redirect('');
             } else {
                 echo "Error updating record.";
             }
