@@ -28,7 +28,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->insert($data)) {
-                redirect('/'); // optionally add route: redirect('users/index');
+                redirect('users/index'); // optionally add route: redirect('users/index');
             } else {
                 echo "Error inserting record.";
             }
@@ -54,7 +54,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->update($id, $data)) {
-                redirect('/');
+                redirect('users/index');
             } else {
                 echo "Error updating record.";
             }
