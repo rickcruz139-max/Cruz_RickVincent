@@ -15,7 +15,7 @@ class UsersController extends Controller {
     {
         $this->call->model('Usersmodel');
         $data['users'] = $this->usersModel->all();
-        $this->call->view('users/index', $data);
+        $this->call->view('/', $data);
     }
 
     public function create()
