@@ -1,4 +1,4 @@
- <?php
+<?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 
 class UsersController extends Controller {
@@ -13,7 +13,6 @@ class UsersController extends Controller {
 
     public function index(): void
     {
-        $this->call->model('Usersmodel');
         $data['users'] = $this->usersModel->all();
         $this->call->view('users/index', $data);
     }
@@ -29,11 +28,10 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->insert($data)) {
-    header('Location: //');
-    exit;
-} else {
-    echo "Error inserting record.";
-}
+                redirect(); // optionally add route: redirect('users/index');
+            } else {
+                echo "Error inserting record.";
+            }
         } else {
             $this->call->view('users/create');
         }
@@ -56,22 +54,21 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->update($id, $data)) {
-    header('Location: //');
-    exit;
-} else {
+                redirect();
+            } else {
                 echo "Error updating record.";
             }
         } else {
-    $data['users'] = $user; // <-- change 'users' to 'user'
+    $data['user'] = $user; // <-- change 'users' to 'user'
     $this->call->view('users/update', $data);
 }
     }
 
     public function delete($id)
     {
-       if ($this->usersModel->delete($id)) {
-    header('Location: //');
-    exit;} else {
+        if ($this->usersModel->delete($id)) {
+            redirect();
+        } else {
             echo "Error deleting record.";
         }
     }
