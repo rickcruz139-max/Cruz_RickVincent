@@ -126,11 +126,12 @@
               <td class="px-6 py-4"><?= $user['username']; ?></td>
               <td class="px-6 py-4"><?= $user['email']; ?></td>
               <td class="px-6 py-4 text-center">
-                <a href="<?= site_url('users/update/'.$user['id']); ?>" 
-                   class="update-link">Update</a>
-                |
-                <a href="<?= site_url('users/delete/'.$user['id']); ?>" 
-                   class="delete-link">Delete</a>
+                <td class="px-6 py-4 text-center">
+  <td class="px-6 py-4 text-center">
+  <a href="/users/update/<?= $user['id']; ?>" class="update-link">Update</a>
+  |
+  <a href="/users/delete/<?= $user['id']; ?>" class="delete-link">Delete</a>
+</td>
               </td>
             </tr>
           <?php endforeach; ?>
@@ -140,11 +141,11 @@
 
     <!-- Create Button -->
     <div class="mt-8 text-center">
-      <a href="<?= site_url('users/create');?>" 
-         class="inline-block btn-gradient text-white px-6 py-3 rounded-md shadow-md font-semibold transition duration-300">
-        + Create New Record
-      </a>
-    </div>
+  <a href="/users/create"
+     class="inline-block btn-gradient text-white px-6 py-3 rounded-md shadow-md font-semibold transition duration-300">
+    + Create New Record
+  </a>
+</div>
     
   </div>
 

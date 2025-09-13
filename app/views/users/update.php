@@ -93,8 +93,7 @@
     <h1 class="text-3xl font-bold text-center mb-8 uppercase tracking-wide">Update Record</h1>
 
     <!-- Form -->
-    <form action="<?= site_url('users/update/' . segment(4)); ?>" method="POST" class="space-y-6">
-      
+   <form action="/users/update/<?= $user['id']; ?>" method="POST" class="space-y-6">
       <!-- Username -->
       <div>
         <label for="username" class="block text-sm font-semibold mb-1">Username</label>
