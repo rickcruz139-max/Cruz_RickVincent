@@ -74,7 +74,7 @@
   <div class="card-3d p-8 w-full max-w-md">
     <h1 class="text-3xl font-bold text-center mb-8 uppercase tracking-wide">Create User</h1>
 
-    <form action="/users/create" method="POST" class="space-y-6">>
+   <form action="/index.php/users/create" method="POST" class="space-y-6">
       <!-- Username -->
       <div>
         <label for="username" class="block text-sm font-semibold mb-1">Username</label>
