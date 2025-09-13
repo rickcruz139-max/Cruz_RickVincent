@@ -29,10 +29,11 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->insert($data)) {
-                redirect('users/index'); // optionally add route: redirect('users/index');
-            } else {
-                echo "Error inserting record.";
-            }
+    header('Location: /');
+    exit;
+} else {
+    echo "Error inserting record.";
+}
         } else {
             $this->call->view('users/create');
         }
@@ -55,8 +56,9 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->update($id, $data)) {
-                redirect('users/index');
-            } else {
+    header('Location: /');
+    exit;
+} else {
                 echo "Error updating record.";
             }
         } else {
@@ -67,9 +69,9 @@ class UsersController extends Controller {
 
     public function delete($id)
     {
-        if ($this->usersModel->delete($id)) {
-            redirect('users/index');
-        } else {
+       if ($this->usersModel->delete($id)) {
+    header('Location: /');
+    exit;} else {
             echo "Error deleting record.";
         }
     }
