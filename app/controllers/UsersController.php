@@ -29,7 +29,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->insert($data)) {
-    header('Location: /');
+    header('Location: /index.php/');
     exit;
 } else {
     echo "Error inserting record.";
@@ -56,7 +56,7 @@ class UsersController extends Controller {
             );
 
             if ($this->usersModel->update($id, $data)) {
-    header('Location: /');
+    header('Location: /index.php/');
     exit;
 } else {
                 echo "Error updating record.";
@@ -70,7 +70,7 @@ class UsersController extends Controller {
     public function delete($id)
     {
        if ($this->usersModel->delete($id)) {
-    header('Location: /');
+    header('Location: /index.php/');
     exit;} else {
             echo "Error deleting record.";
         }

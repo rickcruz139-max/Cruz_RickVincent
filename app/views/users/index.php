@@ -120,34 +120,26 @@
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-700">
-          <?php foreach (html_escape($users) as $user): ?> 
-            <tr class="hover:cursor-pointer">
-              <td class="px-6 py-4 font-medium"><?= $user['id']; ?></td>
-              <td class="px-6 py-4"><?= $user['username']; ?></td>
-              <td class="px-6 py-4"><?= $user['email']; ?></td>
-              <td class="px-6 py-4 text-center">
-                <td class="px-6 py-4 text-center">
-  <td class="px-6 py-4 text-center">
-  <a href="/users/update/<?= $user['id']; ?>" class="update-link">Update</a>
-  |
-  <a href="/users/delete/<?= $user['id']; ?>" class="delete-link">Delete</a>
-</td>
-              </td>
-            </tr>
-          <?php endforeach; ?>
-        </tbody>
-      </table>
-    </div>
+  <?php foreach (html_escape($users) as $user): ?> 
+    <tr class="hover:cursor-pointer">
+      <td class="px-6 py-4 font-medium"><?= $user['id']; ?></td>
+      <td class="px-6 py-4"><?= $user['username']; ?></td>
+      <td class="px-6 py-4"><?= $user['email']; ?></td>
+      <td class="px-6 py-4 text-center">
+        <a href="/index.php/users/update/<?= $user['id']; ?>" class="update-link">Update</a>
+        |
+        <a href="/index.php/users/delete/<?= $user['id']; ?>" class="delete-link">Delete</a>
+      </td>
+    </tr>
+  <?php endforeach; ?>
+</tbody>
 
-    <!-- Create Button -->
-    <div class="mt-8 text-center">
-  <a href="/users/create"
+<div class="mt-8 text-center">
+  <a href="/index.php/users/create"
      class="inline-block btn-gradient text-white px-6 py-3 rounded-md shadow-md font-semibold transition duration-300">
     + Create New Record
   </a>
 </div>
-    
-  </div>
 
   <script>
     /* particles.js config */
