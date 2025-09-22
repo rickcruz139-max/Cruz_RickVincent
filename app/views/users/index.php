@@ -6,10 +6,10 @@
   <title>Students Info</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-/* Darker Background with Soft Aesthetic Blobs */
+/* Dark Muted Green Background with Blobs */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1e2f28, #2e3f35); /* dark muted green */
+  background: linear-gradient(135deg, #1e2f28, #2e3f35);
   min-height: 100vh;
   margin: 0;
   padding: 20px;
@@ -91,7 +91,7 @@ h1 {
   background: #4caf50;
 }
 
-/* Table Style */
+/* Table */
 table {
   width: 95%;
   margin: 0 auto 40px;
@@ -183,7 +183,7 @@ a.action-btn.delete:hover {
   transform: translateY(-2px);
 }
 
-/* Pagination Styling */
+/* Pagination */
 .pagination {
   justify-content: center;
 }
@@ -216,12 +216,7 @@ a.action-btn.delete:hover {
 
   <!-- Search -->
   <form action="<?= site_url('users'); ?>" method="get" class="search-form">
-    <?php
-      $q = '';
-      if(isset($_GET['q'])) {
-        $q = $_GET['q'];
-      }
-    ?>
+    <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
     <input class="form-control" name="q" type="text" placeholder="Search..." value="<?= html_escape($q); ?>" style="max-width: 300px;">
     <button type="submit" class="btn-search">Search</button>
   </form>
@@ -237,7 +232,7 @@ a.action-btn.delete:hover {
       </tr>
     </thead>
     <tbody>
-      <?php foreach (html_escape($user) as $users): ?>
+      <?php foreach ($user as $users): ?>
         <tr>
           <td><?= html_escape($users['id']); ?></td>
           <td><?= html_escape($users['username']); ?></td>
