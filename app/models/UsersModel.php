@@ -5,7 +5,7 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
  * Model: UsersModel
  */
 class UsersModel extends Model {
-    protected $table = 'user';  // pangalan ng table mo
+    protected $table = 'users';  // pangalan ng table mo
     protected $primary_key = 'id';
     
     // fields na pwedeng i-insert/update (wag isama ang id kung auto_increment)
