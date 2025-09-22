@@ -6,33 +6,35 @@
 
 /* Pagination Links */
 .pagination a,
-.pagination strong, 
+.pagination strong,
 .pagination span {
   display: inline-block;
   padding: 8px 14px;
   border-radius: 6px;
-  border: 1px solid #e2e8f0; /* gray-200 */
-  background-color: #f8fafc; /* gray-50 */
-  color: #1e293b; /* slate-800 */
+  border: none;
+  background: #1a1a2e; /* dark card background */
+  color: #f1f5f9; /* light text */
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 /* Hover effect */
 .pagination a:hover {
-  background-color: #2563eb; /* blue-600 */
+  background: linear-gradient(90deg, #a855f7, #ec4899); /* purple to pink */
   color: #fff;
-  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 /* Active page */
 .pagination strong {
-  background-color: #2563eb; /* blue-600 */
+  background: linear-gradient(90deg, #a855f7, #ec4899);
   color: #fff;
-  border-color: #2563eb;
   cursor: default;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 
@@ -47,32 +49,35 @@
 .search-input {
   width: 260px;
   padding: 10px 14px;
-  border: 1px solid #d1d5db; /* gray-300 */
+  border: none;
   border-radius: 8px 0 0 8px;
   outline: none;
   font-size: 14px;
-  transition: all 0.2s ease-in-out;
+  background: #1a1a2e; /* dark input background */
+  color: #f1f5f9;
+  transition: all 0.3s ease-in-out;
 }
 
 .search-input:focus {
-  border-color: #22c55e; /* green-500 */
-  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.4);
+  border: 1px solid #a855f7;
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.5);
 }
 
 /* Search Button */
 .search-btn {
-  background: #16a34a; /* green-600 */
+  background: linear-gradient(90deg, #a855f7, #ec4899); /* purple to pink */
   color: #fff;
   border: none;
   padding: 10px 16px;
   border-radius: 0 8px 8px 0;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
 }
 
 .search-btn:hover {
-  background: #15803d; /* green-700 */
+  background: linear-gradient(90deg, #9333ea, #db2777); /* darker gradient */
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
