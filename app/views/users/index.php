@@ -32,8 +32,10 @@ h1 {
   font-weight: 700;
   font-size: 32px;
   background: linear-gradient(90deg, #e91e63, #9c27b0);
-  -webkit-background-clip: text;
+  background-clip: text;         /* ✅ Standard property */
+  -webkit-background-clip: text; /* ✅ Webkit (Chrome, Edge, Safari) */
   -webkit-text-fill-color: transparent;
+  color: transparent;            /* ✅ For Firefox */
   margin-bottom: 25px;
 }
 
