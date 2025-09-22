@@ -6,131 +6,102 @@
   <title>Students Info</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-/* Background with gradient */
+/* Dark gradient background */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #2a003f, #1b0033);
+  background: radial-gradient(circle at top left, #0d0d14, #0a0a12);
   min-height: 100vh;
   margin: 0;
-  padding: 20px;
-  position: relative;
-  overflow-x: hidden;
-  color: #f3e5f5;
+  padding: 30px;
+  color: #e0d7ef;
 }
 
-/* Gradient glow blobs */
-body::before,
-body::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.2;
-  z-index: 0;
+/* Container Card */
+.container-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #131323;
+  border-radius: 14px;
+  box-shadow: 0 0 30px rgba(156, 39, 176, 0.3);
+  padding: 25px;
 }
 
-body::before {
-  width: 400px;
-  height: 400px;
-  background: #e91e63;
-  top: -100px;
-  left: -100px;
-}
-
-body::after {
-  width: 500px;
-  height: 500px;
-  background: #3f51b5;
-  bottom: -120px;
-  right: -100px;
-}
-
-h1, .search-form, table, .btn-create, .pagination {
-  position: relative;
-  z-index: 1;
-}
-
-/* Header */
+/* Header Title */
 h1 {
   text-align: center;
-  background: linear-gradient(90deg, #e91e63, #9c27b0, #3f51b5);
+  font-weight: 700;
+  font-size: 32px;
+  background: linear-gradient(90deg, #e91e63, #9c27b0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
-  font-size: 40px;
-  font-weight: 800;
-  letter-spacing: 1px;
+  margin-bottom: 25px;
 }
 
-/* Search Form */
+/* Search */
 .search-form {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .search-form .form-control {
-  background: #2a1a3f;
+  background: #1e1e2e;
+  border: 1px solid #3f3f5a;
   color: #fff;
-  border: 1px solid #9c27b0;
+  border-radius: 8px;
 }
 
 .search-form .form-control::placeholder {
-  color: #c5c5c5;
+  color: #888;
 }
 
 .search-form .btn-search {
-  background: linear-gradient(90deg, #e91e63, #9c27b0);
+  background: linear-gradient(90deg, #9c27b0, #e91e63);
   color: #fff;
-  font-weight: 600;
   border: none;
-  border-radius: 6px;
-  padding: 10px 18px;
-  transition: 0.3s ease;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: 0.3s;
 }
 
 .search-form .btn-search:hover {
-  background: linear-gradient(90deg, #9c27b0, #3f51b5);
+  opacity: 0.9;
 }
 
 /* Table */
 table {
-  width: 95%;
-  margin: 0 auto 40px;
   border-collapse: separate;
-  border-spacing: 0 8px;
-  background: transparent;
+  border-spacing: 0 10px;
+  width: 100%;
 }
 
 thead th {
-  background: linear-gradient(90deg, #e91e63, #9c27b0, #3f51b5);
-  color: #ffffff;
-  padding: 16px;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
+  background: #1f1f30;
+  color: #cbbde8;
+  padding: 14px;
   border: none;
-  border-radius: 8px 8px 0 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 
 tbody tr {
-  background: #2c1f38;
+  background: #1a1a28;
   border-radius: 12px;
-  transition: all 0.2s ease;
-}
-
-tbody td {
-  padding: 16px;
-  font-size: 15px;
-  color: #f3e5f5;
-  border-top: 1px solid #1f1028;
-  border-bottom: 1px solid #1f1028;
+  transition: 0.2s ease;
 }
 
 tbody tr:hover {
-  background-color: #3d2a4d;
-  transform: scale(1.005);
+  background: #242437;
+}
+
+tbody td {
+  padding: 14px;
+  border-top: 1px solid #26263a;
+  border-bottom: 1px solid #26263a;
+  color: #e0d7ef;
 }
 
 /* Action Buttons */
@@ -141,38 +112,38 @@ a.action-btn {
   font-weight: 600;
   border-radius: 6px;
   text-decoration: none;
-  transition: all 0.2s ease-in-out;
+  transition: 0.2s;
 }
 
 a.action-btn.update {
-  background: linear-gradient(90deg, #9c27b0, #3f51b5);
-  color: white;
+  background: linear-gradient(90deg, #3f51b5, #9c27b0);
+  color: #fff;
 }
 
 a.action-btn.update:hover {
-  background: linear-gradient(90deg, #3f51b5, #9c27b0);
+  opacity: 0.85;
 }
 
 a.action-btn.delete {
   background: linear-gradient(90deg, #e91e63, #9c27b0);
-  color: white;
+  color: #fff;
 }
 
 a.action-btn.delete:hover {
-  background: linear-gradient(90deg, #9c27b0, #e91e63);
+  opacity: 0.85;
 }
 
 /* Create Button */
 .btn-create {
   display: inline-block;
+  margin-top: 10px;
   padding: 12px 22px;
-  background: linear-gradient(90deg, #e91e63, #9c27b0, #3f51b5);
+  background: linear-gradient(90deg, #9c27b0, #e91e63);
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 15px;
   text-decoration: none;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
 .btn-create:hover {
@@ -183,6 +154,7 @@ a.action-btn.delete:hover {
 /* Pagination */
 .pagination {
   justify-content: center;
+  margin-top: 20px;
 }
 
 .pagination a,
@@ -192,65 +164,65 @@ a.action-btn.delete:hover {
   border-radius: 6px;
   font-size: 14px;
   text-decoration: none;
-  color: #ffffff !important;
-  background: linear-gradient(90deg, #e91e63, #9c27b0, #3f51b5) !important;
-  border: none !important;
+  color: #fff !important;
+  background: #2a2a3f !important;
+  border: 1px solid #3f3f5a !important;
 }
 
 .pagination a:hover {
-  background: #fff !important;
-  color: #9c27b0 !important;
+  background: linear-gradient(90deg, #e91e63, #9c27b0) !important;
 }
 
 .pagination strong {
-  background: #fff !important;
-  color: #9c27b0 !important;
+  background: linear-gradient(90deg, #9c27b0, #3f51b5) !important;
 }
   </style>
 </head>
 <body>
-  <h1>Students Info</h1>
+  <div class="container-box">
+    <h1>Students Info</h1>
 
-  <!-- Search -->
-  <form action="<?= site_url('users'); ?>" method="get" class="search-form">
-    <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-    <input class="form-control" name="q" type="text" placeholder="Search..." value="<?= html_escape($q); ?>" style="max-width: 300px;">
-    <button type="submit" class="btn-search">Search</button>
-  </form>
+    <!-- Search -->
+    <form action="<?= site_url('users'); ?>" method="get" class="search-form">
+      <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+      <input class="form-control" name="q" type="text" placeholder="Search..." value="<?= html_escape($q); ?>" style="max-width: 280px;">
+      <button type="submit" class="btn-search">Search</button>
+    </form>
 
-  <!-- Table -->
-  <table class="table table-hover text-center align-middle">
-    <thead>
-      <tr>
-        <th width="10%">ID</th>
-        <th width="30%">Name</th>
-        <th width="40%">Email</th>
-        <th width="20%">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($user as $users): ?>
+    <!-- Table -->
+    <table class="table text-center align-middle">
+      <thead>
         <tr>
-          <td><?= html_escape($users['id']); ?></td>
-          <td><?= html_escape($users['username']); ?></td>
-          <td><?= html_escape($users['email']); ?></td>
-          <td>
-            <a href="<?= site_url('/users/update/'.$users['id']); ?>" class="action-btn update">Update</a>
-            <a href="<?= site_url('/users/delete/'.$users['id']); ?>" class="action-btn delete" onclick="return confirm('Delete this user?');">Delete</a>
-          </td>
+          <th width="10%">ID</th>
+          <th width="30%">Name</th>
+          <th width="40%">Email</th>
+          <th width="20%">Action</th>
         </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <?php foreach ($user as $users): ?>
+          <tr>
+            <td><?= html_escape($users['id']); ?></td>
+            <td><?= html_escape($users['username']); ?></td>
+            <td><?= html_escape($users['email']); ?></td>
+            <td>
+              <a href="<?= site_url('/users/update/'.$users['id']); ?>" class="action-btn update">Update</a>
+              <a href="<?= site_url('/users/delete/'.$users['id']); ?>" class="action-btn delete" onclick="return confirm('Delete this user?');">Delete</a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
 
-  <!-- Pagination -->
-  <div class="d-flex justify-content-center">
-    <?= $page; ?>
-  </div>
+    <!-- Pagination -->
+    <div class="d-flex justify-content-center">
+      <?= $page; ?>
+    </div>
 
-  <!-- Create Button -->
-  <div class="text-center mt-4">
-    <a href="<?= site_url('users/create'); ?>" class="btn-create">+ Create New User</a>
+    <!-- Create Button -->
+    <div class="text-center mt-4">
+      <a href="<?= site_url('users/create'); ?>" class="btn-create">+ Create New User</a>
+    </div>
   </div>
 </body>
 </html>
