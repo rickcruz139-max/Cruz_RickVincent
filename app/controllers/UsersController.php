@@ -29,9 +29,9 @@ class UsersController extends Controller {
 
         $records_per_page = 10;
 
-        $users = $this->UsersModel->page($q, $records_per_page, $page);
-        $data['users'] = $users['records'];
-        $total_rows = $users['total_rows'];
+        $user = $this->UsersModel->page($q, $records_per_page, $page);
+        $data['user'] = $user['records'];
+        $total_rows = $user['total_rows'];
 
         $this->pagination->set_options([
             'first_link'     => '<span class="px-3 py-1 bg-emerald-600 text-green rounded hover:bg-emerald-700">⏮ First</span>',
@@ -91,7 +91,7 @@ class UsersController extends Controller {
                 echo "Error updating record.";
             }
         } else {
-            $data['users'] = $user;
+            $data['user'] = $user;
             $this->call->view('users/update', $data);
         }
     }
