@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 30px;
-  color: #e0d7ef;
+  color: #9286a5ff;
 }
 
 /* Container Card */
