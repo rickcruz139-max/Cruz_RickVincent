@@ -6,166 +6,211 @@
   <title>Update User</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: "Poppins", sans-serif;
-      background: #0a001a;
-      color: #fff;
-      overflow: hidden;
-    }
+ <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
 
-    #particles-js {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: #0d001a;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    color: #fff;
+  }
 
-    .circles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-    }
+  /* Neon Background Circles */
+  .circles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
 
-    .circles li {
-      position: absolute;
-      display: block;
-      list-style: none;
-      background: rgba(192,132,252,0.2);
-      animation: animate 25s linear infinite;
-      bottom: -150px;
-      border-radius: 50%;
-    }
+  .circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 0, 255, 0.15);
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+    border-radius: 50%;
+  }
 
-    @keyframes animate {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
-      }
-      100% {
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
-      }
-    }
+  .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-duration: 15s; background: rgba(255,0,255,0.25); }
+  .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-duration: 10s; background: rgba(255,0,180,0.2);}
+  .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-duration: 20s; background: rgba(255,0,255,0.2);}
+  .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 18s; background: rgba(255,0,180,0.25);}
+  .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-duration: 12s; background: rgba(255,0,255,0.15);}
+  .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-duration: 25s; background: rgba(255,0,180,0.2);}
+  .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-duration: 35s; background: rgba(255,0,255,0.25);}
+  .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-duration: 45s; background: rgba(255,0,180,0.15);}
+  .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-duration: 11s; background: rgba(255,0,255,0.2);}
+  .circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-duration: 30s; background: rgba(255,0,180,0.25); }
 
-    .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-duration: 15s; }
-    .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-duration: 10s; }
-    .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-duration: 20s; }
-    .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 18s; }
-    .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-duration: 12s; }
-    .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-duration: 25s; }
-    .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-duration: 35s; }
-    .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-duration: 45s; }
-    .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-duration: 11s; }
-    .circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-duration: 30s; }
+  @keyframes animate {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+  }
 
-    .form-card {
-      width: 100%;
-      max-width: 450px;
-      background: rgba(30, 0, 60, 0.7);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.6),
-                  inset 0 0 20px rgba(155, 0, 255, 0.3);
-      padding: 35px;
-      text-align: center;
-      z-index: 1;
-      position: relative;
-    }
+  /* Dashboard Container */
+  .dashboard-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(20, 0, 40, 0.6);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+    z-index: 1;
+  }
 
-    .form-card h1 {
-      font-size: 1.8em;
-      font-weight: 600;
-      color: #c084fc;
-      margin-bottom: 25px;
-      text-shadow: 0 0 8px rgba(192,132,252,0.7);
-    }
+  .dashboard-header h2 {
+    font-size: 2em;
+    font-weight: 700;
+    color: #ff00ff;
+    text-shadow: 0 0 15px #ff00ff;
+  }
 
-    .form-group {
-      margin-bottom: 18px;
-      position: relative;
-    }
+  .logout-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(255,0,255,0.6);
+  }
+  .logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255,0,200,0.9);
+  }
 
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 12px 15px;
-      font-size: 1em;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      box-shadow: inset 0 0 8px rgba(192,132,252,0.5);
-      transition: 0.3s;
-    }
+  .user-status {
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: rgba(255, 0, 255, 0.08);
+    border: 1px solid rgba(255, 0, 255, 0.3);
+    color: #ff66ff;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(255,0,255,0.4);
+  }
 
-    .form-group input:focus,
-    .form-group select:focus {
-      box-shadow: 0 0 12px #9f7aea, inset 0 0 12px #9f7aea;
-    }
+  .user-status.error {
+    background: rgba(255, 65, 108, 0.1);
+    border: 1px solid rgba(255, 65, 108, 0.3);
+    color: #ff416c;
+  }
 
-    .toggle-password {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 1.1em;
-      color: #c084fc;
-    }
+  /* Table */
+  .table-card {
+    background: rgba(30, 0, 50, 0.5);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(255,0,255,0.3);
+  }
 
-    .btn-submit {
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 1.1em;
-      font-weight: 500;
-      cursor: pointer;
-      background: linear-gradient(135deg, #7c3aed, #c084fc);
-      color: #fff;
-      box-shadow: 0 0 12px rgba(192,132,252,0.6);
-      transition: 0.3s;
-    }
+  th {
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 5px #ff00ff;
+  }
 
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 18px rgba(192,132,252,0.9);
-    }
+  td {
+    background: rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    text-align: center;
+  }
 
-    .btn-return {
-      display: block;
-      margin-top: 18px;
-      padding: 12px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-      box-shadow: inset 0 0 8px rgba(192,132,252,0.4);
-    }
+  a.btn-action {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin: 0 2px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.3s;
+  }
 
-    .btn-return:hover {
-      background: rgba(192,132,252,0.2);
-      box-shadow: 0 0 12px rgba(192,132,252,0.6);
-    }
-  </style>
+  a.btn-update {
+    background: linear-gradient(90deg, #ff00ff, #ff66ff);
+    box-shadow: 0 0 10px rgba(255,0,255,0.5);
+  }
+  a.btn-update:hover {
+    box-shadow: 0 0 20px rgba(255,0,255,0.8);
+  }
+
+  a.btn-delete {
+    background: linear-gradient(90deg, #ff416c, #ff0040);
+    box-shadow: 0 0 10px rgba(255,65,108,0.5);
+  }
+  a.btn-delete:hover {
+    box-shadow: 0 0 20px rgba(255,0,80,0.9);
+  }
+
+  .btn-create {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: linear-gradient(90deg, #ff00ff, #ff0080);
+    color: #fff;
+    font-size: 1.1em;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-top: 20px;
+    box-shadow: 0 0 15px rgba(255,0,255,0.6);
+  }
+  .btn-create:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255,0,255,0.9);
+  }
+
+  .search-form input {
+    border-radius: 8px;
+    border: 1px solid rgba(255,0,255,0.4);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .search-form input:focus {
+    outline: none;
+    border: 1px solid #ff00ff;
+    box-shadow: 0 0 10px #ff00ff;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .search-form button {
+    background: #ff00ff;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 16px;
+  }
+  .search-form button:hover {
+    box-shadow: 0 0 15px #ff00ff;
+  }
+</style>
+
 </head>
 <body>
   <div id="particles-js"></div>
