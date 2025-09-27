@@ -225,6 +225,5 @@ public function update($id)
     {
         unset($_SESSION['user']); // clear session manually
         redirect('auth/login');
-    
     }
 }
