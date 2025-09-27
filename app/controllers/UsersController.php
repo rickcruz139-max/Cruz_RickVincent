@@ -17,42 +17,40 @@ class UsersController extends Controller {
         }
     }
 
-    public function index()
-    {
-        // Check kung may naka-login
-        if (!isset($_SESSION['user'])) {
-            redirect('/auth/login');
-            exit;
-        }
-
-        $logged_in_user = $_SESSION['user']; 
-        $data['logged_in_user'] = $logged_in_user;
-
-        // Current page
-        $page = !empty($this->io->get('page')) ? $this->io->get('page') : 1;
-        $q    = !empty($this->io->get('q')) ? trim($this->io->get('q')) : '';
-
-        $records_per_page = 10;
-
-        // Get paginated users
-        $users = $this->UsersModel->page($q, $records_per_page, $page);
-        $data['user'] = $users['records'];   // ✅ only rows
-        $total_rows = $users['total_rows'];
-
-        // Pagination setup
-        $this->pagination->set_options([
-            'first_link'     => '⏮ First',
-            'last_link'      => 'Last ⏭',
-            'next_link'      => 'Next →',
-            'prev_link'      => '← Prev',
-            'page_delimiter' => '&page='
-        ]);
-        $this->pagination->set_theme('custom');
-        $this->pagination->initialize($total_rows, $records_per_page, $page, 'users?q='.$q);
-        $data['page'] = $this->pagination->paginate();
-
-        $this->call->view('users/index', $data);
+   public function index()
+{
+    if (!isset($_SESSION['user'])) {
+        redirect('/auth/login');
+        exit;
     }
+
+    $logged_in_user = $_SESSION['user']; 
+    $data['logged_in_user'] = $logged_in_user;
+
+    // ✅ Safe GET
+    $page = (!empty($_GET['page'])) ? $this->io->get('page') : 1;
+    $q    = (!empty($_GET['q'])) ? trim($this->io->get('q')) : '';
+
+    $records_per_page = 10;
+
+    $users = $this->UsersModel->page($q, $records_per_page, $page);
+    $data['user'] = $users['records'];
+    $total_rows = $users['total_rows'];
+
+    $this->pagination->set_options([
+        'first_link'     => '⏮ First',
+        'last_link'      => 'Last ⏭',
+        'next_link'      => 'Next →',
+        'prev_link'      => '← Prev',
+        'page_delimiter' => '&page='
+    ]);
+    $this->pagination->set_theme('custom');
+    $this->pagination->initialize($total_rows, $records_per_page, $page, 'users?q='.$q);
+    $data['page'] = $this->pagination->paginate();
+
+    $this->call->view('users/index', $data);
+}
+
 
     public function create()
     {
