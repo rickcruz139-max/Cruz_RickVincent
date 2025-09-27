@@ -147,6 +147,11 @@
       margin-top: 15px;
     }
 
+    .group p {
+      color: #fff;
+      font-size: 0.9em;
+    }
+
     .group a {
       font-size: 0.95em;
       color: #a200ff;

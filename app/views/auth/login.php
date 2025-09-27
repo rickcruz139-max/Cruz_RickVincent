@@ -145,6 +145,11 @@
       margin-top: 15px;
     }
 
+    .group p {
+      color: #fff;
+      font-size: 0.9em;
+    }
+
     .group a {
       font-size: 0.95em;
       color: #a200ff;
@@ -201,7 +206,7 @@
     </form>
 
     <div class="group">
-      <p style="font-size: 0.9em;">
+      <p>
         Don't have an account? <a href="<?= site_url('auth/register'); ?>">Register here</a>
       </p>
     </div>
