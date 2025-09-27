@@ -5,226 +5,233 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Students Info</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
-/* Dark gradient background */
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: radial-gradient(circle at top left, #0d0d14, #0a0a12);
-  min-height: 100vh;
-  margin: 0;
-  padding: 30px;
-  color: #9286a5ff;
-}
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top left, #141e30, #243b55);
+      color: #fff;
+    }
 
-/* Container Card */
-.container-box {
-  max-width: 1100px;
-  margin: 0 auto;
-  background: #131323;
-  border-radius: 14px;
-  box-shadow: 0 0 30px rgba(156, 39, 176, 0.3);
-  padding: 25px;
-}
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+    }
 
-/* Header Title */
-h1 {
-  text-align: center;
-  font-weight: 700;
-  font-size: 32px;
-  background: linear-gradient(90deg, #e91e63, #9c27b0);
-  background-clip: text;         /* ✅ Standard property */
-  -webkit-background-clip: text; /* ✅ Webkit (Chrome, Edge, Safari) */
-  -webkit-text-fill-color: transparent;
-  color: transparent;            /* ✅ For Firefox */
-  margin-bottom: 25px;
-}
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
 
-/* Search */
-.search-form {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+    .dashboard-header h2 {
+      font-weight: 700;
+      color: #00f2fe;
+      text-shadow: 0 0 10px #00f2fe;
+    }
 
-.search-form .form-control {
-  background: #1e1e2e;
-  border: 1px solid #3f3f5a;
-  color: #fff;
-  border-radius: 8px;
-}
+    .logout-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s;
+      box-shadow: 0 0 10px rgba(255,65,108,0.6);
+    }
+    .logout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255,75,43,0.8);
+    }
 
-.search-form .form-control::placeholder {
-  color: #888;
-}
+    .user-status {
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      background: rgba(0, 242, 254, 0.1);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #00f2fe;
+      margin-bottom: 20px;
+    }
+    .user-status.error {
+      background: rgba(255, 65, 108, 0.1);
+      border: 1px solid rgba(255, 65, 108, 0.3);
+      color: #ff416c;
+    }
 
-.search-form .btn-search {
-  background: linear-gradient(90deg, #9c27b0, #e91e63);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-weight: 600;
-  border-radius: 8px;
-  transition: 0.3s;
-}
+    .table-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    }
 
-.search-form .btn-search:hover {
-  opacity: 0.9;
-}
+    table {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+    }
 
-/* Table */
-table {
-  border-collapse: separate;
-  border-spacing: 0 10px;
-  width: 100%;
-}
+    th {
+      background: #00f2fe;
+      color: #000;
+      font-size: 14px;
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-thead th {
-  background: #1f1f30;
-  color: #cbbde8;
-  padding: 14px;
-  border: none;
-  font-weight: 600;
-  text-transform: uppercase;
-  font-size: 13px;
-}
+    td {
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      text-align: center;
+    }
 
-tbody tr {
-  background: #1a1a28;
-  border-radius: 12px;
-  transition: 0.2s ease;
-}
+    a.btn-action {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      margin: 0 2px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+    }
 
-tbody tr:hover {
-  background: #242437;
-}
+    a.btn-update {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      box-shadow: 0 0 10px rgba(0,242,254,0.5);
+    }
+    a.btn-update:hover {
+      box-shadow: 0 0 20px rgba(79,172,254,0.8);
+    }
 
-tbody td {
-  padding: 14px;
-  border-top: 1px solid #26263a;
-  border-bottom: 1px solid #26263a;
-  color: #e0d7ef;
-}
+    a.btn-delete {
+      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      box-shadow: 0 0 10px rgba(255,65,108,0.5);
+    }
+    a.btn-delete:hover {
+      box-shadow: 0 0 20px rgba(255,75,43,0.8);
+    }
 
-/* Action Buttons */
-a.action-btn {
-  display: inline-block;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: 0.2s;
-}
+    .btn-create {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      color: #000;
+      font-size: 1.1em;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+      margin-top: 20px;
+      box-shadow: 0 0 15px rgba(0,242,254,0.6);
+    }
+    .btn-create:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 25px rgba(79,172,254,0.8);
+    }
 
-a.action-btn.update {
-  background: linear-gradient(90deg, #3f51b5, #9c27b0);
-  color: #fff;
-}
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
 
-a.action-btn.update:hover {
-  opacity: 0.85;
-}
+    .search-form input {
+      border-radius: 8px;
+      border: 1px solid rgba(0,242,254,0.4);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .search-form input:focus {
+      outline: none;
+      border: 1px solid #00f2fe;
+      box-shadow: 0 0 10px #00f2fe;
+      background: rgba(255,255,255,0.15);
+    }
 
-a.action-btn.delete {
-  background: linear-gradient(90deg, #e91e63, #9c27b0);
-  color: #fff;
-}
-
-a.action-btn.delete:hover {
-  opacity: 0.85;
-}
-
-/* Create Button */
-.btn-create {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 12px 22px;
-  background: linear-gradient(90deg, #9c27b0, #e91e63);
-  color: #fff;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn-create:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* Pagination */
-.pagination {
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination a,
-.pagination strong {
-  margin: 0 3px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 14px;
-  text-decoration: none;
-  color: #fff !important;
-  background: #2a2a3f !important;
-  border: 1px solid #3f3f5a !important;
-}
-
-.pagination a:hover {
-  background: linear-gradient(90deg, #e91e63, #9c27b0) !important;
-}
-
-.pagination strong {
-  background: linear-gradient(90deg, #9c27b0, #3f51b5) !important;
-}
+    .search-form button {
+      background: #00f2fe;
+      border: none;
+      color: #000;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 8px 16px;
+    }
+    .search-form button:hover {
+      box-shadow: 0 0 15px #00f2fe;
+    }
   </style>
 </head>
 <body>
-  <div class="container-box">
-    <h1>Students Info</h1>
+  <div class="dashboard-container">
+    
+    <div class="dashboard-header">
+      <h2>
+        <?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User Dashboard'; ?>
+      </h2>
+      <a href="<?=site_url('auth/logout'); ?>"><button class="logout-btn">Logout</button></a>
+    </div>
 
-    <!-- Search -->
-    <form action="<?= site_url('users'); ?>" method="get" class="search-form">
-      <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
-      <input class="form-control" name="q" type="text" placeholder="Search..." value="<?= html_escape($q); ?>" style="max-width: 280px;">
-      <button type="submit" class="btn-search">Search</button>
-    </form>
+    <?php if(!empty($logged_in_user)): ?>
+      <div class="user-status mb-3">
+        <strong>Welcome:</strong> <?= html_escape($logged_in_user['username']); ?>
+      </div>
+    <?php else: ?>
+      <div class="user-status error mb-3">
+        Logged in user not found
+      </div>
+    <?php endif; ?>
 
-    <!-- Table -->
-    <table class="table text-center align-middle">
-      <thead>
-        <tr>
-          <th width="10%">ID</th>
-          <th width="30%">Name</th>
-          <th width="40%">Email</th>
-          <th width="20%">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php foreach ($user as $users): ?>
+    <!-- Search + Table -->
+    <div class="table-card">
+      <form action="<?=site_url('users');?>" method="get" class="d-flex mb-3 search-form">
+        <?php $q = isset($_GET['q']) ? $_GET['q'] : ''; ?>
+        <input name="q" type="text" class="form-control me-2" placeholder="Search" value="<?=html_escape($q);?>">
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
           <tr>
-            <td><?= html_escape($users['id']); ?></td>
-            <td><?= html_escape($users['username']); ?></td>
-            <td><?= html_escape($users['email']); ?></td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <?php if ($logged_in_user['role'] === 'admin'): ?>
+              <th>Password</th>
+              <th>Role</th>
+            <?php endif; ?>
+            <th>Action</th>
+          </tr>
+          <?php foreach ($user as $user): ?>
+          <tr>
+            <td><?=html_escape($user['id']); ?></td>
+            <td><?=html_escape($user['username']); ?></td>
+            <td><?=html_escape($user['email']); ?></td>
+            <?php if ($logged_in_user['role'] === 'admin'): ?>
+              <td>*******</td>
+              <td><?= html_escape($user['role']); ?></td>
+            <?php endif; ?>
             <td>
-              <a href="<?= site_url('/users/update/'.$users['id']); ?>" class="action-btn update">Update</a>
-              <a href="<?= site_url('/users/delete/'.$users['id']); ?>" class="action-btn delete" onclick="return confirm('Delete this user?');">Delete</a>
+              <a href="<?=site_url('/users/update/'.$user['id']);?>" class="btn-action btn-update">Update</a>
+              <a href="<?=site_url('/users/delete/'.$user['id']);?>" class="btn-action btn-delete">Delete</a>
             </td>
           </tr>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
+          <?php endforeach; ?>
+        </table>
+      </div>
 
-    <!-- Pagination -->
-    <div class="d-flex justify-content-center">
-      <?= $page; ?>
+      <div class="pagination-container">
+        <?php echo $page; ?>
+      </div>
     </div>
 
-    <!-- Create Button -->
-    <div class="text-center mt-4">
-      <a href="<?= site_url('users/create'); ?>" class="btn-create">+ Create New User</a>
-    </div>
+    <a href="<?=site_url('users/create'); ?>" class="btn-create">+ Create New User</a>
   </div>
 </body>
 </html>
