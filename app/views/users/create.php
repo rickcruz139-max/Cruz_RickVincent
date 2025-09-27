@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Create User</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     * {
       margin: 0;
@@ -16,148 +18,155 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9ec4, #fba8c6, #ffd1e3);
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, #1a0028, #0a0014 70%);
       overflow: hidden;
-      position: relative;
     }
 
-    /* Circle decorations */
-    .circle {
+    /* Glowing background orbs */
+    .circles {
       position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.25);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      animation: float 8s infinite ease-in-out;
-    }
-
-    .circle.small {
-      width: 80px;
-      height: 80px;
-      top: 15%;
-      left: 10%;
-      animation-delay: 1s;
-    }
-
-    .circle.medium {
-      width: 120px;
-      height: 120px;
-      bottom: 20%;
-      right: 15%;
-      animation-delay: 3s;
-    }
-
-    .circle.large {
-      width: 200px;
-      height: 200px;
-      top: 50%;
-      left: 60%;
-      animation-delay: 5s;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        transform: translateY(-30px) scale(1.05);
-      }
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      border-radius: 30px;
-      padding: 40px 50px;
-      width: 380px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      text-align: center;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      z-index: 10;
-    }
-
-    .container h2 {
-      font-size: 26px;
-      margin-bottom: 25px;
-      color: #fff;
-      font-weight: 700;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    .input-group {
-      margin-bottom: 18px;
-      text-align: left;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 8px;
-      color: #fff;
-      font-weight: 500;
-    }
-
-    .input-group input {
       width: 100%;
-      padding: 14px 20px;
-      border: none;
-      border-radius: 50px;
-      outline: none;
-      font-size: 15px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .circles li {
+      position: absolute;
+      display: block;
+      list-style: none;
+      width: 25px;
+      height: 25px;
+      background: rgba(255, 0, 180, 0.15);
+      animation: animate 20s linear infinite;
+      bottom: -150px;
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+
+    .circles li:nth-child(1) { left: 25%; width: 90px; height: 90px; background: rgba(255, 0, 180, 0.25); animation-duration: 15s; }
+    .circles li:nth-child(2) { left: 10%; width: 30px; height: 30px; background: rgba(162, 0, 255, 0.2); animation-duration: 10s; }
+    .circles li:nth-child(3) { left: 70%; width: 40px; height: 40px; background: rgba(255, 0, 180, 0.2); animation-duration: 20s; }
+    .circles li:nth-child(4) { left: 40%; width: 70px; height: 70px; background: rgba(162, 0, 255, 0.25); animation-duration: 18s; }
+    .circles li:nth-child(5) { left: 65%; width: 25px; height: 25px; background: rgba(255, 0, 180, 0.2); animation-duration: 12s; }
+    .circles li:nth-child(6) { left: 75%; width: 120px; height: 120px; background: rgba(162, 0, 255, 0.25); animation-duration: 25s; }
+    .circles li:nth-child(7) { left: 35%; width: 160px; height: 160px; background: rgba(255, 0, 180, 0.2); animation-duration: 35s; }
+    .circles li:nth-child(8) { left: 50%; width: 30px; height: 30px; background: rgba(162, 0, 255, 0.2); animation-duration: 45s; }
+    .circles li:nth-child(9) { left: 20%; width: 20px; height: 20px; background: rgba(255, 0, 180, 0.15); animation-duration: 11s; }
+    .circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; background: rgba(162, 0, 255, 0.3); animation-duration: 30s; }
+
+    @keyframes animate {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+    }
+
+    .form-container {
+      position: relative;
+      width: 380px;
+      padding: 40px;
+      border-radius: 15px;
+      background: rgba(30, 0, 50, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 0, 180, 0.3);
+      box-shadow: 0 0 20px rgba(255, 0, 180, 0.3),
+                  0 0 40px rgba(162, 0, 255, 0.2);
+      z-index: 1;
+    }
+
+    .form-container h1 {
+      text-align: center;
+      font-size: 2em;
+      font-weight: 700;
+      color: #ff00b4;
+      margin-bottom: 25px;
+      text-shadow: 0 0 15px #a200ff, 0 0 25px #ff00b4;
+      letter-spacing: 1px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
       transition: 0.3s;
     }
 
-    .input-group input:focus {
-      background: #fff;
-      box-shadow: 0 0 8px rgba(255, 77, 150, 0.6);
+    .form-group input::placeholder {
+      color: #aaa;
     }
 
-    .btn {
+    .form-group input:focus {
+      outline: none;
+      border-color: #ff00b4;
+      box-shadow: 0 0 8px #a200ff;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .btn-submit {
       width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+      padding: 14px;
+      background: linear-gradient(90deg, #a200ff, #ff00b4);
       color: #fff;
-      background: linear-gradient(135deg, #ff4d96, #ff6fb3);
-      box-shadow: 0 4px 12px rgba(255, 77, 150, 0.4);
-      transition: all 0.3s ease;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(162, 0, 255, 0.5);
     }
 
-    .btn:hover {
-      background: linear-gradient(135deg, #ff6fb3, #ff4d96);
-      box-shadow: 0 6px 16px rgba(255, 77, 150, 0.5);
+    .btn-submit:hover {
       transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(255, 0, 180, 0.8), 0 0 40px rgba(162, 0, 255, 0.6);
+    }
+
+    .link-wrapper {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 10px 18px;
+      background: none;
+      color: #a200ff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      border: 1px solid #a200ff;
+    }
+
+    .btn-link:hover {
+      background: #a200ff;
+      color: #fff;
+      box-shadow: 0 0 12px #ff00b4;
     }
   </style>
 </head>
 <body>
-  <!-- Circle Decorations -->
-  <div class="circle small"></div>
-  <div class="circle medium"></div>
-  <div class="circle large"></div>
+  <!-- Background circles -->
+  <ul class="circles">
+    <li></li><li></li><li></li><li></li><li></li>
+    <li></li><li></li><li></li><li></li><li></li>
+  </ul>
 
-  <!-- Form Container -->
-  <div class="container">
-    <h2>Create User</h2>
-    <form>
-      <div class="input-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Enter username" required />
+  <div class="form-container">
+    <h1>Create User</h1>
+    <form id="user-form" action="<?=site_url('users/create/')?>" method="POST">
+      <div class="form-group">
+        <input type="text" name="username" placeholder="Username" required value="<?= isset($username) ? html_escape($username) : '' ?>">
       </div>
-      <div class="input-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter email" required />
+      <div class="form-group">
+        <input type="email" name="email" placeholder="Email" required value="<?= isset($email) ? html_escape($email) : '' ?>">
       </div>
-      <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter password" required />
-      </div>
-      <button type="submit" class="btn">Create</button>
+      <button type="submit" class="btn-submit">Create User</button>
     </form>
   </div>
 </body>
