@@ -20,10 +20,10 @@
       justify-content: center;
       align-items: flex-start;
       min-height: 100vh;
-      background: #f1eef3ff;
+      background: #0d001a;
       padding: 40px 20px;
       overflow-x: hidden;
-      color: #dc53cfff;
+      color: #fff;
     }
 
     /* Neon Background Bubbles */
