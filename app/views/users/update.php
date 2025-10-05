@@ -149,6 +149,13 @@
       <div class="form-group">
         <input type="email" name="email" value="<?=html_escape($user['email']);?>" placeholder="Email" required>
       </div>
+      <div class="form-group">
+        <select name="role" required>
+          <option value="" disabled <?= (!isset($user['role']) || empty($user['role'])) ? 'selected' : '' ?>>Select Role</option>
+          <option value="user" <?= (isset($user['role']) && $user['role'] === 'user') ? 'selected' : '' ?>>User </option>
+          <option value="admin" <?= (isset($user['role']) && $user['role'] === 'admin') ? 'selected' : '' ?>>Admin</option>
+        </select>
+      </div>
 
       <button type="submit" class="btn-submit">Update User</button>
     </form>
