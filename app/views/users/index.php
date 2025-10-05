@@ -201,14 +201,14 @@
     .search-form input {
       border-radius: 8px;
       border: 1px solid rgba(255,0,255,0.4);
-      background: rgba(255,255,255,0.08);
+      background: rgba(249, 241, 241, 0.08);
       color: #fff;
     }
     .search-form input:focus {
       outline: none;
       border: 1px solid #ff00ff;
       box-shadow: 0 0 10px #ff00ff;
-      background: rgba(255,255,255,0.15);
+      background: rgba(227, 223, 223, 0.15);
     }
 
     .search-form button {

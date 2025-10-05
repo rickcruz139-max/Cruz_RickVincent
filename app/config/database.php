@@ -61,13 +61,12 @@ $database['main'] = array(
     'driver'    => 'mysql',
     'hostname'  => 'sql12.freesqldatabase.com', // host from freesqldatabase dashboard
     'port'      => '3306',
-    'username'  => 'sql12799624',               // your actual DB username
-    'password'  => 'kRNzyCJq9W',          // your actual DB password
-    'database'  => 'sql12799624',               // your actual DB name
+    'username'  => 'sql12801428',               // your actual DB username
+    'password'  => 'YZPuqkrLvU',          // your actual DB password
+    'database'  => 'sql12801428',               // your actual DB name
     'charset'   => 'utf8mb4',
     'dbprefix'  => '',
     'path'      => ''
 );
-
 
 ?>
