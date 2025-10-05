@@ -96,7 +96,7 @@ public function update($id)
     // Fetch the user to be edited
     $user = $this->UsersModel->get_user_by_id($id);
     if (!$user) {
-        echo "User  not found.";
+        echo "User not found.";
         return;
     }
 
@@ -107,7 +107,7 @@ public function update($id)
         // Only allow admin to update role and password
         if (!empty($logged_in_user) && $logged_in_user['role'] === 'admin') {
             $role = $this->io->post('role');
-            $password = $this->io->post('password') ?? '';  // Safe access: default to empty string if not provided
+            $password = $this->io->post('password');
             $data = [
                 'username' => $username,
                 'email' => $email,
@@ -137,7 +137,6 @@ public function update($id)
         $this->call->view('users/update', $data);
     }
 }
-
 
     public function delete($id)
     {
