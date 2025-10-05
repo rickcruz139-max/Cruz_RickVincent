@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Students Info</title>
+  <title>Users Dashboard</title>  <!-- Fixed: Changed from "Students Info" to match content -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -222,6 +222,16 @@
     .search-form button:hover {
       box-shadow: 0 0 15px #ff00ff;
     }
+
+    .no-users-message {
+      text-align: center;
+      padding: 40px;
+      color: #ff66ff;
+      font-size: 1.2em;
+      background: rgba(255, 0, 255, 0.05);
+      border-radius: 10px;
+      border: 1px dashed rgba(255, 0, 255, 0.3);
+    }
   </style>
 </head>
 <body>
@@ -234,7 +244,7 @@
   <div class="dashboard-container">
     <div class="dashboard-header">
       <h2>
-        <?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User Dashboard'; ?>
+        <?= ($logged_in_user['role'] === 'admin') ? 'Admin Dashboard' : 'User  Dashboard'; ?>
       </h2>
       <a href="<?=site_url('auth/logout'); ?>"><button class="logout-btn">Logout</button></a>
     </div>
@@ -269,26 +279,38 @@
             <?php endif; ?>
             <th>Action</th>
           </tr>
-          <?php foreach ($user as $user): ?>
-          <tr>
-            <td><?=html_escape($user['id']); ?></td>
-            <td><?=html_escape($user['username']); ?></td>
-            <td><?=html_escape($user['email']); ?></td>
-            <?php if ($logged_in_user['role'] === 'admin'): ?>
-              <td>*******</td>
-              <td><?= html_escape($user['role']); ?></td>
-            <?php endif; ?>
-            <td>
-              <a href="<?=site_url('/users/update/'.$user['id']);?>" class="btn-action btn-update">Update</a>
-              <a href="<?=site_url('/users/delete/'.$user['id']);?>" class="btn-action btn-delete">Delete</a>
-            </td>
-          </tr>
-          <?php endforeach; ?>
+          <?php if (empty($user)): ?>
+            <tr>
+              <td colspan="<?= ($logged_in_user['role'] === 'admin') ? '6' : '4'; ?>" class="no-users-message">
+                No users found. <?= !empty($q) ? 'Try a different search.' : 'Create your first user below.'; ?>
+              </td>
+            </tr>
+          <?php else: ?>
+            <?php foreach ($user as $u): ?>  <!-- Renamed to $u to avoid confusion with $user array -->
+            <tr>
+              <td><?=html_escape($u['id']); ?></td>
+              <td><?=html_escape($u['username']); ?></td>
+              <td><?=html_escape($u['email']); ?></td>
+              <?php if ($logged_in_user['role'] === 'admin'): ?>
+                <td>*******</td>
+                <td><?= html_escape($u['role']); ?></td>
+              <?php endif; ?>
+              <td>
+                <a href="<?=site_url('/users/update/'.$u['id']);?>" class="btn-action btn-update">Update</a>
+                <a href="<?=site_url('/users/delete/'.$u['id']);?>" class="btn-action btn-delete" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>  <!-- Added JS confirm for safety -->
+              </td>
+            </tr>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </table>
       </div>
 
       <div class="pagination-container">
-        <?php echo $page; ?>
+        <?php if (isset($page)): ?>
+          <?php echo $page; ?>
+        <?php else: ?>
+          <p>No pagination needed (fewer than <?= $records_per_page ?? 10; ?> users).</p>  <!-- Fallback if no pagination -->
+        <?php endif; ?>
       </div>
     </div>
 
