@@ -84,8 +84,7 @@
       letter-spacing: 1px;
     }
 
-    .form-group input,
-    .form-group select {
+    .form-group input {
       width: 100%;
       padding: 12px 15px;
       font-size: 1em;
@@ -101,8 +100,7 @@
       color: #aaa;
     }
 
-    .form-group input:focus,
-    .form-group select:focus {
+    .form-group input:focus {
       outline: none;
       border-color: #ff00b4;
       box-shadow: 0 0 8px #a200ff;
@@ -167,13 +165,6 @@
       </div>
       <div class="form-group">
         <input type="email" name="email" placeholder="Email" required value="<?= isset($email) ? html_escape($email) : '' ?>">
-      </div>
-      <div class="form-group">
-        <select name="role" required>
-          <option value="" disabled selected>Select Role</option>
-          <option value="user" <?= isset($role) && $role === 'user' ? 'selected' : '' ?>>User </option>
-          <option value="admin" <?= isset($role) && $role === 'admin' ? 'selected' : '' ?>>Admin</option>
-        </select>
       </div>
       <button type="submit" class="btn-submit">Create User</button>
     </form>
