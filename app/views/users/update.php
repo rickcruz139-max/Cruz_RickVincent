@@ -18,12 +18,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      height: 100vh;
       background: radial-gradient(circle at top left, #1a0028, #0a0014 70%);
       overflow: hidden;
     }
 
-    /* Glowing background orbs */
+    /* Animated background circles */
     .circles {
       position: absolute;
       width: 100%;
@@ -72,6 +72,8 @@
       box-shadow: 0 0 20px rgba(255, 0, 180, 0.3),
                   0 0 40px rgba(162, 0, 255, 0.2);
       z-index: 1;
+      text-align: center;
+      color: #fff;
     }
 
     .form-container h1 {
@@ -96,7 +98,8 @@
       font-size: 1em;
       border-radius: 8px;
       border: 2px solid transparent;
-      background: rgba(255, 255, 255, 0.08);
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
       transition: 0.3s;
     }
@@ -111,6 +114,17 @@
       border-color: #ff00b4;
       box-shadow: 0 0 8px #a200ff;
       background: rgba(255,255,255,0.15);
+    }
+
+    /* Password toggle icon */
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #ff00b4;
+      z-index: 2;
     }
 
     .btn-submit {
@@ -131,6 +145,29 @@
       transform: translateY(-2px);
       box-shadow: 0 0 20px rgba(255, 0, 180, 0.8), 0 0 40px rgba(162, 0, 255, 0.6);
     }
+
+    .link-wrapper {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .btn-link {
+      display: inline-block;
+      padding: 10px 18px;
+      background: none;
+      color: #a200ff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: 0.3s;
+      border: 1px solid #a200ff;
+    }
+
+    .btn-link:hover {
+      background: #a200ff;
+      color: #fff;
+      box-shadow: 0 0 12px #ff00b4;
+    }
   </style>
 </head>
 <body>
@@ -150,8 +187,38 @@
         <input type="email" name="email" value="<?=html_escape($user['email']);?>" placeholder="Email" required>
       </div>
 
+      <?php if(!empty($logged_in_user) && $logged_in_user['role'] === 'admin'): ?>
+        <div class="form-group">
+          <select name="role" required>
+            <option value="user" <?= $user['role'] === 'user' ? 'selected' : ''; ?>>User </option>
+            <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="position: relative;">
+          <input type="password" placeholder="Password" name="password" id="password" required>
+          <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+        </div>
+      <?php endif; ?>
+
       <button type="submit" class="btn-submit">Update User</button>
     </form>
+    <div class="link-wrapper">
+      <a href="<?=site_url('/users'); ?>" class="btn-link">Return to Home</a>
+    </div>
   </div>
+
+  <script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    if (togglePassword) {
+      togglePassword.addEventListener('click', function () {
+        const type = password.type === 'password' ? 'text' : 'password';
+        password.type = type;
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+      });
+    }
+  </script>
 </body>
 </html>
